@@ -1,0 +1,42 @@
+# Test reprox on each PR.
+
+name: Test package
+
+# Trigger this code when a new release is published
+on:
+  workflow_dispatch:
+  release:
+    types: [ created ]
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    name: "${{ matrix.test }}_py${{ matrix.python-version }}"
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: False
+      matrix:
+        python-version: [3.7, 3.8, 3.9, "3.10"]
+        test: ['pytest']
+    steps:
+      # Setup and installation
+      - name: Setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Install requirements
+        run: |
+          pip install -r requirements.txt
+          pip install pytest-cov
+          python setup.py develop
+      - name: Test package
+        run: |
+          pytest --cov npshmex tests/ --durations 0
+      # Done
+      - name: goodbye
+        run: echo "tests done, bye bye"
