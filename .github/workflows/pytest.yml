@@ -32,11 +32,11 @@ jobs:
       - name: Install requirements
         run: |
           pip install -r requirements.txt
-          pip install pytest
+          pip install pytest-cov
           python setup.py develop
       - name: Test package
         run: |
-          pytest -vs --log-level=DEBUG --durations 0
+          pytest --cov npshmex tests/ --durations 0
       # Done
       - name: goodbye
         run: echo "tests done, bye bye"
