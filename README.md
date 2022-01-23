@@ -1,7 +1,7 @@
 npshmex
 =======
 
-[![Build Status](https://travis-ci.org/JelleAalbers/npshmex.svg?branch=master)](https://travis-ci.org/JelleAalbers/npshmex)
+[![Test package](https://github.com/JoranAngevaare/npshmex/actions/workflows/pytest.yml/badge.svg)](https://github.com/JoranAngevaare/npshmex/actions/workflows/pytest.yml)
 
 Npshmex provides a drop-in replacement for concurrent.futures.ProcessPoolExecutor,
 using shared memory provided by [SharedArray](https://gitlab.com/tenzing/shared-array) 
