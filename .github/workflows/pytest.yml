@@ -20,7 +20,7 @@ jobs:
       fail-fast: False
       matrix:
         python-version: [3.7, 3.8, 3.9, "3.10", "3.11"]
-        test: []'pytest']
+        test: ['pytest']
     steps:
       # Setup and installation
       - name: Setup python
